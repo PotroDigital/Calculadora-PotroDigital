@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Calculadora PotroDigital</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		form {
+			background: #292929;
+    		width: 100%;
+    		box-sizing: border-box;
+    		height: 647px;
+		}
+
+		input[type="number"], input[type="text"] {
+			width: calc(100% - 25px);
+    		height: 50px;
+    		padding: 5px 10px;
+    		text-align: right;
+    		background: transparent;
+    		font-size: 2.5em;
+    		color: #fff;
+    		border: none;
+    		outline: none;
+		}
+
+		.hover, .hover-orange {
+			width: calc(24% - .5px);
+			margin: 0.5px;
+			height: 55px;
+    		background: #1b1b1b;
+    		border: none;
+    		outline: none;
+    		color: #fff;
+    		font-size: 1.4em;
+		}
+
+		.black {
+			background: #000;
+		}
+
+		.hover:hover {
+			background: #282828;
+		}
+
+		.hover-orange:hover {
+			background: #CA7404;
+			color: #000;
+		}
+
+		@media screen and (max-width: 400px) {
+			.hover {
+				width: calc(23.5% - .5px);
+			}
+		}
+
+		@media screen and (max-width: 300px) {
+			.hover {
+				width: calc(23% - .5px);
+			}
+		}
+
+		@media screen and (max-width: 300px) {
+			.hover {
+				width: calc(22.5% - .5px);
+			}
+		}
+	</style>
+</head>
+<body>
+
+	<main>
+		<form action="">
+			<input type="number" name="resultado" id="segundaCifra">
+			<input type="number" name="ejercicios" id="primeraCifra">
+			<!-- <input type="button" class="hover" name="%" value="%" id="%"> -->
+			<input type="button" class="hover" name="√" value="√" id="√">
+			<input type="button" class="hover" name="x²" value="x²" id="x²">
+			<!-- <input type="button" class="hover" name="⅟x" value="⅟x" id="⅟x"> -->
+			<!-- <input type="button" class="hover" name="CE" value="CE" id="CE"> -->
+			<input type="button" class="hover" name="C" value="C" id="C">
+			<!-- <input type="button" class="hover" name="❌" value="❌" id="❌"> -->
+			<input type="button" class="hover-orange" name="÷" value="÷" id="÷">
+			<input type="button" class="hover black" name="7" value="7" id="7">
+			<input type="button" class="hover black" name="8" value="8" id="8">
+			<input type="button" class="hover black" name="9" value="9" id="9">
+			<input type="button" class="hover-orange" name="×" value="×" id="×">
+			<input type="button" class="hover black" name="4" value="4" id="4">
+			<input type="button" class="hover black" name="5" value="5" id="5">
+			<input type="button" class="hover black" name="6" value="6" id="6">
+			<input type="button" class="hover-orange" name="–" value="–" id="–">
+			<input type="button" class="hover black" name="1" value="1" id="1">
+			<input type="button" class="hover black" name="2" value="2" id="2">
+			<input type="button" class="hover black" name="3" value="3" id="3">
+			<input type="button" class="hover-orange" name="+" value="+" id="+">
+			<input type="button" class="hover" name="±" value="±" id="±">
+			<input type="button" class="hover black" name="0" value="0" id="0">
+			<input type="button" class="hover" name="," value="xⁿ" id="xⁿ">
+			<input type="button" class="hover-orange" name="=" value="=" id="=">
+		</form>
+	</main>
+	<script>
+		(function(){
+			// Variable de referencia
+			
+			var contador = false;
+
+
+			// Variables de la calculadora 
+			
+			// Inputs para graficar las  cifras
+			var segundaCifra  = document.getElementById('segundaCifra');
+			var primeraCifra = document.getElementById('primeraCifra');
+
+			// Botones de signos 
+			// var entre = document.getElementById('%');
+			var raizCuadrada = document.getElementById('√');
+			var alCuadrado = document.getElementById('x²');
+			// var unoX = document.getElementById('⅟x');
+			// var ce = document.getElementById('CE');
+			var borrarT = document.getElementById('C');
+			// var borrarU = document.getElementById('❌');
+			var dividir = document.getElementById('÷');
+			var x = document.getElementById('×');
+			var menos = document.getElementById('–');
+			var mas = document.getElementById('+');
+			var igual = document.getElementById('=');
+			var potencias = document.getElementById('xⁿ');
+			var np = document.getElementById('±');
+
+			// botones de números
+			var uno = document.getElementById('1');
+			var dos = document.getElementById('2');
+			var tres = document.getElementById('3');
+			var cuatro = document.getElementById('4');
+			var cinco = document.getElementById('5');
+			var seis = document.getElementById('6');
+			var siete = document.getElementById('7');
+			var ocho = document.getElementById('8');
+			var nueve = document.getElementById('9');
+			var cero = document.getElementById('0');
+
+			// Eventos
+
+			uno.addEventListener("click", function(){
+				if (contador == 'p'){
+					segundaCifra.value = segundaCifra.value + uno.value;
+				} else {
+					primeraCifra.value = primeraCifra.value + uno.value;					
+				}
+			});
+
+			dos.addEventListener("click", function(){
+				if (contador == 'p'){
+					segundaCifra.value = segundaCifra.value + dos.value;
+				} else {
+					primeraCifra.value = primeraCifra.value + dos.value;
+				}
+			});
+
+			tres.addEventListener("click", function(){
+				if (contador == 'p'){
+					segundaCifra.value = segundaCifra.value + tres.value;
+				} else {
+					primeraCifra.value = primeraCifra.value + tres.value;
+				}
+			});
+
+			cuatro.addEventListener("click", function(){
+				if (contador == 'p'){
+					segundaCifra.value = segundaCifra.value + cuatro.value;
+				} else {
+					primeraCifra.value = primeraCifra.value + cuatro.value;
+				}
+			});
+
+			cinco.addEventListener("click", function(){
+				if (contador == 'p'){
+					segundaCifra.value = segundaCifra.value + cinco.value;
+				} else {
+					primeraCifra.value = primeraCifra.value + cinco.value;
+				}
+			});
+
+			seis.addEventListener("click", function(){
+				if (contador == 'p'){
+					segundaCifra.value = segundaCifra.value + seis.value
+				} else {
+					primeraCifra.value = primeraCifra.value + seis.value;
+				}
+			});
+
+			siete.addEventListener("click", function(){
+				if (contador == 'p'){
+					segundaCifra.value = segundaCifra.value + siete.value;
+				} else {
+					primeraCifra.value = primeraCifra.value + siete.value;				
+				}
+			});
+
+			ocho.addEventListener("click", function(){
+				if (contador == 'p'){
+					segundaCifra.value = segundaCifra.value + ocho.value;
+				} else {
+					primeraCifra.value = primeraCifra.value + ocho.value;
+				}
+			});
+
+			nueve.addEventListener("click", function(){
+				if (contador == 'p'){
+					segundaCifra.value = segundaCifra.value + nueve.value;
+				} else {
+					primeraCifra.value = primeraCifra.value + nueve.value;
+				}
+			});
+
+			cero.addEventListener("click", function(){
+				if (contador == 'p'){
+					segundaCifra.value = segundaCifra.value + cero.value;
+				} else {
+					primeraCifra.value = primeraCifra.value + cero.value;
+				}
+			});
+
+			// borrarU.addEventListener("click", function(){
+			// 	ejercicios.value = ejercicios.value - 1;
+			// })
+			 
+			mas.addEventListener("click", function(){
+					mas.style.color = '#FF2121';
+					segundaCifra.valueAsNumber = primeraCifra.valueAsNumber;
+					primeraCifra.value = '';
+					contador = '+';
+			});
+
+			menos.addEventListener("click", function(){
+					menos.style.color = '#FF2121';
+					segundaCifra.valueAsNumber = primeraCifra.valueAsNumber;
+					primeraCifra.value = '';
+					contador = '-';	
+			});
+
+			x.addEventListener("click", function(){
+					x.style.color = '#FF2121';
+					segundaCifra.value = primeraCifra.value;
+					primeraCifra.value = '';
+					contador = '×';			
+			});
+
+			dividir.addEventListener("click", function(){
+					dividir.style.color = '#FF2121';
+					segundaCifra.value = primeraCifra.value;
+					primeraCifra.value = '';
+					contador = '/';
+			});
+
+			raizCuadrada.addEventListener("click", function(){
+					raizCuadrada.style.color = '#FF2121';
+					primeraCifra.value = Math.sqrt(primeraCifra.value);
+					var colorRaiz = function(){
+						raizCuadrada.style.color = '#fff';	
+					}
+
+					setTimeout(colorRaiz, 1000);
+			});
+
+			alCuadrado.addEventListener("click", function(){
+					alCuadrado.style.color = '#FF2121';
+					primeraCifra.value = primeraCifra.valueAsNumber * primeraCifra.valueAsNumber;
+					var colorCuadrado = function(){
+						alCuadrado.style.color = '#fff';	
+					}
+
+					setTimeout(colorCuadrado, 1000);
+			});
+
+			np.addEventListener("click", function(){
+				np.style.color = '#FF2121';
+					var colorNp = function(){
+						np.style.color = '#FFFFFF';
+					}
+				if (primeraCifra.valueAsNumber == '+' + primeraCifra.valueAsNumber) {
+					primeraCifra.valueAsNumber = '-' + primeraCifra.valueAsNumber;
+				} else {
+					primeraCifra.valueAsNumber = '+' + primeraCifra.valueAsNumber;
+				}
+
+				setTimeout(colorNp, 1000);
+			});
+
+			potencias.addEventListener("click", function(){
+				contador = 'p';
+				potencias.style.color = '#FF2121';
+					var colorPotencia = function(){
+						potencias.style.color = '#FFFFFF';
+					}
+
+					setTimeout(colorPotencia, 1000);
+			});
+
+			// coma.addEventListener("click", function(){
+			// 		coma.style.color = '#FF2121';
+			// 		primeraCifra.type = 'text';
+			// 		primeraCifra.value = primeraCifra.value + ',';
+			// });
+
+			igual.addEventListener("click", function(){
+				if (contador == '+') {
+					primeraCifra.value = primeraCifra.valueAsNumber + segundaCifra.valueAsNumber;
+					segundaCifra.value = '';
+					mas.style.color = '#fff';
+					contador = 'nada';
+
+				} else if (contador == '-') {
+					primeraCifra.value = segundaCifra.valueAsNumber - primeraCifra.valueAsNumber;
+					segundaCifra.value = '';
+					menos.style.color = '#fff';
+					contador = 'nada';
+
+				} else if (contador == '/') {
+					primeraCifra.value = segundaCifra.valueAsNumber / primeraCifra.valueAsNumber;
+					segundaCifra.value = '';
+					dividir.style.color = '#fff';
+					contador = 'nada';
+
+				} else if (contador == '×') {
+					primeraCifra.value = primeraCifra.valueAsNumber * segundaCifra.valueAsNumber;
+					segundaCifra.value = '';
+					x.style.color = '#fff';
+					contador = 'nada';
+
+				} else if (contador == 'p') {
+					primeraCifra.value = Math.pow(primeraCifra.valueAsNumber, segundaCifra.valueAsNumber);
+					segundaCifra.value = '';
+					contador = 'nada';
+				} else {}
+			});
+
+			document.addEventListener("keydown", (event) => {
+				var codigo = event.swith || event.keyCode;
+
+				console.log('Presiono ' + codigo);
+			})
+
+			borrarT.addEventListener("click", function(){
+				primeraCifra.value = '';
+				segundaCifra.value = '';
+			})
+		}())
+	</script>
+</body>
+</html>
